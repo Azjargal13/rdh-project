@@ -1,0 +1,106 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+      Welcome to RDH project!
+    </h1>
+    <img alt="Company Logo" src="..//assets/logo.jpg">
+  </div>
+  
+  
+  <h3>
+      Have you register your printer?
+    </h3>
+  <form class="input-form">
+      <mat-form-field class="example-full-width" appearance="standard" >
+        <mat-label>
+          Printer IP
+        </mat-label>
+        <input matInput placeholder="" required name="selectedData.printerIP" [value]="selectedData.printerIP" [(ngModel)]="selectedData.printerIP">
+        <mat-hint>
+          10.20.0.1
+        </mat-hint>
+      </mat-form-field>
+<!--       
+      <div class="input-form">
+        <mat-form-field class="in-full" appearance="standard" (click)="getDeviceType()">
+          <mat-label>
+              Printer device type
+            </mat-label>
+       <mat-select placeholder="Printer device type" [(ngModel)]="selectedData.deviceType" >
+          <mat-option [value]="controller">
+          {{selectedData.deviceType}}
+          <mat-option [value]="controller" *ngFor="let controller of controllers" >
+            {{controller.name}}
+          </mat-option>
+          </mat-select>
+        <mat-hint>IC603DGE</mat-hint>
+      </mat-form-field>
+      </div> -->
+      
+  </form>
+  
+  <div class="input-form" >
+      <mat-form-field class="in-full" appearance="standard" (click)="getPrinterInfo()"> 
+        <mat-label>
+          Controller name
+        </mat-label>
+          <mat-select placeholder="Printer controller name" [(ngModel)]="selectedData.controllerName" >
+              <mat-option [value]="controller" *ngFor="let controller of pluginInfo">
+              {{controller.controllerName}}
+              <!-- <mat-option [value]="controller" *ngFor="let controller of controllers" >
+                {{controller.name}} -->
+              </mat-option>
+              </mat-select>       
+      </mat-form-field>
+  </div>
+    <div class="input-form">
+      <mat-form-field class="in-full" appearance="standard">
+          <mat-label>
+              Device model
+            </mat-label>
+        <mat-select placeholder="Printer device model" [(ngModel)]="selectedData.controllerName">
+            <!-- <mat-option [value]="controller" *ngFor="let controller of controllers">
+              {{controller.deviceModel}} -->
+              <mat-option [value]="controller" *ngFor="let controller of pluginInfo">
+                {{controller.deviceModel}}
+            </mat-option>
+            </mat-select>
+    </mat-form-field>
+    </div>
+    <div class="input-form">
+      <mat-form-field class="in-full" appearance="standard">
+          <mat-label>
+              Device type
+            </mat-label>
+        <mat-select placeholder="Printer device type" [(ngModel)]="selectedData.controllerName">
+            <!-- <mat-option [value]="controller" *ngFor="let controller of controllers">
+              {{controller.deviceModel}} -->
+              <mat-option [value]="controller" *ngFor="let controller of pluginInfo">
+                {{controller.deviceType}}
+            </mat-option>
+            </mat-select>
+    </mat-form-field>
+    </div>
+    <!-- <div class="input-form">
+      <mat-form-field class="in-full" appearance="standard" >
+        <mat-select placeholder="Printer Device Type" [(ngModel)]="selectedData.deviceType" (click)="getDeviceType()" >
+            <mat-option [value]="selectedDeviceType">
+            {{selectedDeviceType}}
+            </mat-option>
+            </mat-select>       
+    </mat-form-field>
+    </div> -->
+  
+  <button mat-raised-button class="btn" (click)="registerPrinter()" onclick="location.href='/register';" >
+    Register my printer
+  </button>
+  <h3>
+    Already registered?
+  </h3>
+  <button mat-raised-button class="btn" onclick="location.href='/register';">
+    Let's check all registered printers!
+  </button>
+<!--   
+  onclick="location.href='/register';"  -->
+
+  <!-- onclick="location.href='/printerinfo';" -->

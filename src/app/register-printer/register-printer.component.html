@@ -1,0 +1,507 @@
+<mat-toolbar class="toolbar" color='primary'>
+  Registered printer info
+</mat-toolbar>
+
+<mat-tab-group>
+   
+    <mat-tab label="Print Job Management"> 
+        <div class ="uploader-box mat-elevation-z4">
+            <input type="file" name="printfile" ng2FileSelect [uploader]="uploader" />
+
+            <mat-form-field class="select" >
+                <mat-select placeholder="Select Printer" (click)="getRegisteredPrinter()">
+                  
+                      <mat-option [value]="controller" *ngFor="let controller of registeredPrinterDetail">
+                        {{controller.engineControllerName}}
+                    </mat-option>
+                    </mat-select>
+                <!-- <mat-select placeholder="Select Printer">
+                  <mat-option *ngFor="let printers of registeredPrinterDetail" [value]="printers">
+                   {{printers.engineControllerName}}
+                  </mat-option>
+                </mat-select> -->
+              </mat-form-field>
+            <button mat-raised-button class="btn"  (click)="uploader.uploadAll()">
+                Quick Print
+              </button>
+          </div>
+          <!-- (click)="uploader.uploadAll()" -->
+          <div class ="uploader-box mat-elevation-z4">
+              <input type="file" name="uploadfile" ng2FileSelect [uploader]="uploader" />
+              <button mat-raised-button class="btn" (click)="uploader.uploadAll()" >
+                  Upload Job
+                </button>
+          </div>
+          
+          <mat-expansion-panel class="expansion-panel">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  All uploaded jobs
+                </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+            
+              <button mat-raised-button class="btn1" (click)="getUploadedJobs()">
+                  See all uploaded jobs
+                </button>
+                <table id="t01">
+                  <tr>
+                    <th>
+                      File Name
+                    </th>
+                    
+                  </tr>
+                  <tr *ngFor="let user of uploadJobList">
+                    <td>
+                        {{user}}
+                    </td>
+                    <button mat-raised-button class="btn2"> Print Job</button>
+                  </tr>
+                </table>
+                <!-- <table>
+                    <tr>
+                      <th>File name</th>
+                      <th>Controller Name</th>
+                    
+                    </tr>
+                    <tr *ngFor="let user of uploadJobList" ">
+                      <td>
+                          {{user}} -->
+                          <!-- <div *ngFor="let plugins of allPlugins">  {{plugins.deviceModel}}, {{plugins.controllerName}},{{plugins.deviceType}},{{plugins.engineControllerName}} -->
+                              <!-- <mat-list-item [(ngModel)]="allPlugins" name="deviceModel">{{plugins.deviceModel}}, {{plugins.controllerName}},{{plugins.deviceType}},{{plugins.engineControllerName}}
+                                </mat-list-item> -->
+                           <!-- </div> -->
+                      <!-- </td>
+                      
+                    </tr>
+                  </table> -->
+              <!-- <div class="accordion"style="width:150px" *ngFor="let user of uploadJobList" height="60px">{{user}}
+                                  <button mat-raised-button class="btn2">
+                  Print Job
+                </button>
+                  </div>
+             -->
+            </mat-expansion-panel>
+          <!-- <div class ="main-box mat-elevation-z4">
+            <h4>
+                All uploaded jobs
+            </h4>  
+            <button mat-raised-button class="btn1" (click)="getUploadedJobs()">
+                See all uploaded jobs
+              </button>
+            <div *ngFor="let user of uploadJobList">{{user}}
+                </div>
+             
+          </div> -->
+
+           <!-- <mat-list role="list" *ngFor="let user of uploadJobList">
+
+                  <mat-list-item role="listitem" [(ngModel)]="uploadJobList.details"> {{user}}
+                     <button mat-raised-button class="btn1" (click)="getUploadedJobs()">
+                      Cancel job
+                    </button>
+                  </mat-list-item>
+                  <button mat-raised-button class="btn1" (click)="getUploadedJobs()">
+                      Cancel job
+                    </button>
+                </mat-list> -->
+<!--           
+          <div class ="uploadedjob-box mat-elevation-z4">
+            <mat-list-item *ngFor="let user of uploadJobList" [(ngModel)]="uploadJobList.details">
+                {{user}}
+            </mat-list-item> -->
+              <!-- <select [(ngModel)]="uploadJobList">
+                  <option value="" disabled selected>Select Client Name</option> 
+                  <option *ngFor="let user of uploadJobList" [value]="uploadJobList">{{user.details}}</option>
+            </select> -->
+            <!-- <input type="text" [(ngModel)]="uploadJobList.details" [value]="uploadJobList">{{user}} -->
+          <!-- </div> -->
+
+    </mat-tab>
+    <mat-tab label="Device Management">
+      
+      <div class="cardview">
+        <mat-card class="card1" (click)="getUploadedPlugins()">
+          <mat-card-title>
+            All plugins
+          </mat-card-title>
+          Show all the plugins that installed on printing services.
+        </mat-card>
+        <!-- <mat-card class="card" (click)="getAllRegisteredPrinters()">
+            <mat-card-title>
+              All Registered printers details
+            </mat-card-title>
+              Show a list of all registered printer.
+            </mat-card> -->
+        <mat-card class="card" (click)="getRegisteredPrinter()">
+            <mat-card-title>
+              Registered printers details
+            </mat-card-title>
+              Show a list of printers registered with the system.
+            </mat-card>
+         <mat-card class="card" (click)="getPrinterDetails()">
+          <mat-card-title>
+            Printer details
+          </mat-card-title>
+            Show all the detailed info of printers
+          </mat-card>
+          <mat-card class="card">
+            <mat-card-title>
+              Update printer info
+            </mat-card-title>
+              Update some info of the printer
+            </mat-card>
+      </div>
+     
+      <mat-expansion-panel class=expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              All uploaded plugins
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!-- <mat-list>
+             -->
+              <!-- <div>
+              
+                  |Device Model|Controller name| Device Type| Engine Control Name|
+              </div> -->
+              <!-- <div *ngFor="let plugins of allPlugins">  {{plugins.deviceModel}}, {{plugins.controllerName}},{{plugins.deviceType}},{{plugins.engineControllerName}}
+                  <mat-list-item [(ngModel)]="allPlugins" name="deviceModel">{{plugins.deviceModel}}, {{plugins.controllerName}},{{plugins.deviceType}},{{plugins.engineControllerName}}
+                    </mat-list-item>
+               </div>
+              </mat-list> -->
+              <table id="t01">
+                  <tr>
+                    <th>Device Model</th>
+                    <th>Controller Name</th>
+                    <th>Device Type</th>
+                    <th>Engine Controller Name</th>
+                  </tr>
+                  <tr *ngFor="let plugins of allPlugins">
+                    <td>
+                        {{plugins.deviceModel}}
+                        <!-- <div *ngFor="let plugins of allPlugins">  {{plugins.deviceModel}}, {{plugins.controllerName}},{{plugins.deviceType}},{{plugins.engineControllerName}} -->
+                            <!-- <mat-list-item [(ngModel)]="allPlugins" name="deviceModel">{{plugins.deviceModel}}, {{plugins.controllerName}},{{plugins.deviceType}},{{plugins.engineControllerName}}
+                              </mat-list-item> -->
+                         <!-- </div> -->
+                    </td>
+                    <td>
+                        {{plugins.controllerName}}
+                    </td>
+                    <td>
+                        {{plugins.deviceType}}
+                    </td>
+                    <td>
+                        {{plugins.engineControllerName}}
+                    </td>
+                  </tr>
+                </table>
+        </mat-expansion-panel>
+        
+          
+      
+             <!-- <div class ="main-box mat-elevation-z4"  >
+          <h4>
+              All uploaded plugins
+            </h4>
+          <mat-list>
+
+        <div *ngFor="let plugins of allPlugins">  {{plugins.deviceModel}}, {{plugins.controllerName}},{{plugins.deviceType}},{{plugins.engineControllerName}}
+            <mat-list-item [(ngModel)]="allPlugins" name="deviceModel">{{plugins.deviceModel}}, {{plugins.controllerName}},{{plugins.deviceType}},{{plugins.engineControllerName}}
+              </mat-list-item>
+         </div>
+        </mat-list>
+      </div>
+       -->
+
+       <mat-expansion-panel class=expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+             Registered printers details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table id="t01">
+            <tr>
+              <th>
+                Device Model
+              </th>
+            <th>
+                Controller name
+              </th>
+            <th>
+                Device Type
+              </th>
+              <th>
+              Enginer Controller Name 
+            </th>
+            <th>
+               Color Printer 
+              </th>
+              <th>
+                  Printer Id
+                 </th>
+            <th>
+                Device Status 
+              </th>
+              <th>
+                  Device Error State 
+                </th>
+                
+            </tr>
+            <tr *ngFor="let regPrinters of registeredPrinterDetail">
+              <td>
+                  {{regPrinters.deviceModel}}
+              </td>
+              <td>
+                  {{regPrinters.controllerName}}
+              </td>
+              <td>
+                  {{regPrinters.deviceType}}
+              </td>
+              <td>
+                  {{regPrinters.engineControllerName}}
+              </td>
+              <td>
+                  {{regPrinters.colorPrinter}}
+              </td>
+              <td>
+                  {{regPrinters.printerId}}
+              </td>
+              <td>
+                  {{regPrinters.printerErrorState}}
+              </td>
+              <td>
+                  {{regPrinters.printerStatus}}
+              </td>
+              
+            </tr>
+          </table>
+          <!-- <div *ngFor="let regPrinters of registeredPrinterDetail">  {{regPrinters.deviceModel}}, {{regPrinters.controllerName}},{{regPrinters.deviceType}},{{regPrinters.engineControllerName}}
+            </div> -->
+        </mat-expansion-panel>
+      <!-- <div class ="main-box mat-elevation-z4"  >
+          <h4>
+              Registered printers details
+            </h4>
+          <mat-list>
+
+        <div *ngFor="let regPrinters of registeredPrinterDetail">  {{regPrinters.deviceModel}}, {{regPrinters.controllerName}},{{regPrinters.deviceType}},{{regPrinters.engineControllerName}}
+        </div>
+        </mat-list>
+      </div> -->
+      <!-- <mat-expansion-panel class=expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+             All Registered printers details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>  {{allRegisteredPrintersInfo}}
+            </div>
+        </mat-expansion-panel> -->
+        <mat-expansion-panel class=expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+               Printer details
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <table id="t01">
+                <tr>
+                  <th>
+                    Device Model
+                  </th>
+                <th>
+                    Controller name
+                  </th>
+                <th>
+                    Device Type
+                  </th>
+                  <th>
+                  Enginer Controller Name 
+                </th>
+                <th>
+                   Color Printer 
+                  </th>
+                  <th>
+                      Printer Id
+                     </th>
+                <th>
+                    Device Status 
+                  </th>
+                  <th>
+                      Device Error State 
+                    </th>
+                    
+                </tr>
+                <tr *ngFor="let regPrinters of registeredPrinterDetail">
+                  <td>
+                      {{regPrinters.deviceModel}}
+                  </td>
+                  <td>
+                      {{regPrinters.controllerName}}
+                  </td>
+                  <td>
+                      {{regPrinters.deviceType}}
+                  </td>
+                  <td>
+                      {{regPrinters.engineControllerName}}
+                  </td>
+                  <td>
+                      {{regPrinters.colorPrinter}}
+                  </td>
+                  <td>
+                      {{regPrinters.printerId}}
+                  </td>
+                  <td>
+                      {{regPrinters.printerErrorState}}
+                  </td>
+                  <td>
+                      {{regPrinters.printerStatus}}
+                  </td>
+                  
+                </tr>
+              </table>
+            <!-- <div *ngFor="let printDet of printerDetail"> {{[printDet.deviceModel]}}  
+              </div> -->
+              <!-- {{printerDetail.deviceModel}}, {{printerDetail.controllerName}},{{printerDetails.deviceType}},{{printerDetails.engineControllerName}} -->
+          </mat-expansion-panel>
+          <mat-expansion-panel class=expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                 Update print information
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <!-- <div *ngFor="let regPrinters of registeredPrinterDetail">  {{regPrinters.deviceModel}}, {{regPrinters.controllerName}},{{regPrinters.deviceType}},{{regPrinters.engineControllerName}}
+                </div> -->
+            </mat-expansion-panel>
+    </mat-tab>
+    <mat-tab label="Device Info Management">
+        <div class="cardview">
+            <!-- <mat-card class="card" (click)="getDeviceInfo()">
+                <mat-card-title>
+                  Device information
+                </mat-card-title>
+                  Show device status
+                </mat-card> -->
+            <mat-card class="card" (click)="getColorPro()">
+              <mat-card-title>
+                Color profile
+              </mat-card-title>
+              Show the available Color Profiles supported by the device
+            </mat-card>
+            <mat-card class="card" (click)="getColorConfig()">
+              <mat-card-title>
+                Color configurations
+              </mat-card-title>
+                Show  list of Color Configurations available in the device
+              </mat-card>
+             
+          </div>
+
+          <!-- <mat-expansion-panel class=expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                 Device information
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div> Device status:
+                </div>
+            </mat-expansion-panel> -->
+          <!-- <div class ="main-box mat-elevation-z4"  >
+          <h4>
+              Device information
+            </h4>
+          <mat-list>
+
+          <div *ngFor="let devInfo of deviceInfo"> Device status: {{devInfo.deviceStatus}}
+          </div>
+        </mat-list>
+      </div> -->
+      <mat-expansion-panel class=expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+            Color profile
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table id="t01">
+            <tr>
+              <th>
+                Profile Name
+              </th>
+              <th>
+                  Usage
+                </th>
+                <th>
+                    Color space
+                  </th>
+            </tr>
+            <tr *ngFor="let color of colorProfile">
+              <td>
+                {{color.profileName}}
+              </td>
+              <td>
+                  {{color.usage}}
+                </td>
+                <td>
+                    {{color.colorSpace}}
+                  </td>
+            </tr>
+          </table>
+          <!-- <div *ngFor="let color of colorProfile">  
+            {{color.usage}}
+              {{color.profileName}}, {{color.usage}},{{color.colorSpace}}
+            </div> -->
+        </mat-expansion-panel>
+
+      <!-- <div class ="main-box mat-elevation-z4"  >
+          <h4>
+              Color profile
+            </h4>
+          <mat-list>
+
+        <div *ngFor="let color of colorProfile">  {{color.profileName}}, {{color.usage}},{{color.colorSpace}}
+        </div>
+        </mat-list>
+      </div> -->
+      
+      <mat-expansion-panel class=expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+             Color configurations
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table id="t01">
+            <tr>
+              <th>
+                Configuration Name
+              </th>
+              <th>
+                  Is Default
+                </th>
+            </tr>
+            <tr *ngFor="let config of colorConfig">
+              <td>
+                  {{config.configurationName}}
+              </td>
+              <td>
+                  {{config.isDefault}}
+              </td>
+            </tr>
+          </table>
+          <!-- <div *ngFor="let config of colorConfig">  {{config.configurationName}}, {{config.isDefault}}
+            </div>  -->
+        </mat-expansion-panel>
+
+<!--       
+      <div class ="main-box mat-elevation-z4"  >
+          <h4>
+              Color configurations
+            </h4>
+          <mat-list>
+
+        <div *ngFor="let config of colorConfig">  {{config.configurationName}}, {{config.isDefault}}
+        </div>
+        </mat-list>
+      </div> -->
+      
+    </mat-tab>
+  </mat-tab-group>

@@ -1,0 +1,109 @@
+
+.btn{
+    background-color:rgb(31, 158, 236);  
+    color: aliceblue;
+    display: block;
+    font-size: 15px;
+    margin: 50px;
+  }
+  .btn1{
+    background-color:darksalmon;  
+    color: aliceblue;
+    
+    font-size: 15px;
+   
+    position: relative;
+  }
+  .btn2{
+    color: white;
+    background-color: rgb(31, 158, 236); 
+    font-size: 15px;
+   
+  }
+  .accordion{
+    height: 80px;
+    
+  }
+  .toolbar{
+      color: "primary";
+  }
+  .cardview{
+      position: relative;
+      
+      display: flex;
+      
+   }
+   .expansion-panel{
+       background-color: azure;
+       max-width: 1000px;
+      margin: 10px;
+
+   }
+   
+  .card{
+      background-color: rgb(31, 158, 236);
+      margin: 10px;
+      min-width: 100px;
+      max-width: 150px;
+      cursor: pointer;
+      color: white;
+  }
+  .card1{
+    background-color: rgb(31, 158, 236);;
+    margin: 10px;
+    min-width: 100px;
+    max-width: 150px;
+    cursor: pointer;
+    color: white;
+}
+
+  .uploader-box{
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 200px;
+    max-width: 400px;
+    max-height: 300px;
+    
+  }
+  
+  .select{
+    position: relative;
+    padding: 5px;
+  }
+
+  .uploadedjob-box{
+      min-width: 400px;
+      max-width: 600px;
+      margin: 16px;
+      padding: 16px;
+      border-radius: 8px;
+  }
+
+  .main-box{
+    min-width: 400px;
+    max-width: 700px;
+    margin: 10px;
+    padding: 16px;
+    border-radius: 8px;
+    }
+    
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border-radius: 10px;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+table#t01 th{
+background-color: white;
+}
